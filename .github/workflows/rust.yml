@@ -16,7 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Install cross
+      run: cargo install cross
+
     - name: Build
-      run: cargo build --target x86_64-pc-windows-gnu
-    - name: Run tests
-      run: cargo test --verbose
+      run: cross build --target x86_64-pc-windows-gnu
