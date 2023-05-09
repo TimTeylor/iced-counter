@@ -1,46 +1,46 @@
-use iced::widget::{Column, Text};
-use iced::{Sandbox, Element, Settings};
+use iced::widget::{button, column, text};
+use iced::{Alignment, Element, Sandbox, Settings};
 
 fn main() -> iced::Result {
     Model::run(Settings::default())
 }
 
-// Model
-// View
-// Message
-// Update
 struct Model {
-    count: i64,
+    count: i32,
 }
 
 #[derive(Debug, Clone, Copy)]
-enum Msg {
+enum Message {
     Increment,
     Decrement,
 }
 
 impl Sandbox for Model {
-    type Message = Msg;
+    type Message = Message;
 
     fn new() -> Self {
-        Self {
-            count: 0,
-        }
+        Self { count: 0 }
     }
 
     fn title(&self) -> String {
         String::from("Counter")
     }
 
-    fn update(&mut self, message: Self::Message) {
+    fn update(&mut self, message: Message) {
         match message {
-            Msg::Increment => self.count += 1,
-            Msg::Decrement => self.count -= 1,
+            Message::Increment => self.count += 1,
+            Message::Decrement => self.count -= 1,
         }
     }
 
-    fn view(&self) -> Element<'_, Self::Message> {
-        let label = Text::new(self.count.to_string());
-        Column::new().push(label).into()
+    fn view(&self) -> Element<Message> {
+        column![
+            button("Increment").on_press(Message::Increment),
+            text(self.count).size(50),
+            button("Decrement").on_press(Message::Decrement)
+        ]
+        .padding(20)
+        .align_items(Alignment::Center)
+        .into()
     }
 }
