@@ -22,3 +22,9 @@ jobs:
 
     - name: Build
       run: cross build --target x86_64-pc-windows-gnu
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: target/release/*
