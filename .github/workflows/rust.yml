@@ -23,7 +23,7 @@ jobs:
         run: cross build --target x86_64-pc-windows-gnu
 
       - name: Archive build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: rust-build
           path: /home/runner/work/iced-counter/iced-counter/target/x86_64-pc-windows-gnu/debug/iced-counter.exe
