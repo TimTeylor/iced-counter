@@ -26,5 +26,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: rust-build
-          path: /home/runner/work/iced-counter/iced-counter/*
+          path: /home/runner/work/iced-counter/iced-counter/target/x86_64-pc-windows-gnu/debug/iced-counter.exe
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
