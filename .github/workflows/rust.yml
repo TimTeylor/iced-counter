@@ -12,14 +12,14 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: ./counter
+    defaults:
+      run:
+        working-directory: ./rust
 
     steps:
     - uses: actions/checkout@v3
 
-    - run: mkdir -p counter
+    # - run: mkdir -p counter
 
     - name: Install cross
       run: cargo install cross
@@ -28,8 +28,8 @@ jobs:
       run: cross build --target x86_64-pc-windows-gnu
 
     - name: Archive build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
-        path: counter/rust-build
+        name: rust-build
+        path: rust/rust-build
         if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
